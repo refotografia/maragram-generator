@@ -1,2 +1,1 @@
-written in Flutter
-tested only on a Xiaomi device
+written in Flutter and tested only on a Xiaomi device
