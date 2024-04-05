@@ -1,16 +1,3 @@
-# app_solar
+written in Flutter and tested only on a Xiaomi device
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![solar](https://github.com/refotografia/maragram-generator/assets/160272402/a74ef3e4-7a8c-4b46-85b3-ef3de247745a)
