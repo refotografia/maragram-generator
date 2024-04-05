@@ -8,12 +8,19 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:typed_data';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const Maragram());
 
-class MyApp extends StatelessWidget {
+class Maragram extends StatelessWidget {
+  const Maragram({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => const MainPage(),
+        '/details': (BuildContext context) => const DetailsPage(),
+      },
       title: 'Maragram Generator',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -28,17 +35,18 @@ class MyApp extends StatelessWidget {
           onError: Colors.black,
         ),
       ),
-      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MainPageState createState() => MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MainPageState extends State<MainPage> {
   double _value = 127.0;
   String mode = "";
   String imagePath = '';
@@ -118,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
           toolbarHeight: 90,
           backgroundColor: Colors.grey[600],
           centerTitle: true,
-          title: Text('Maragram Generator',
+          title: const Text('Maragram Generator',
               style: TextStyle(
                   fontFamily: 'KodeMono', color: Colors.grey, fontSize: 32.0)),
         ),
@@ -128,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               CupertinoButton.filled(
                 onPressed: selectImage,
-                child: Text(
+                child: const Text(
                   'Select Image',
                   style: TextStyle(
                       fontFamily: 'SourceCodePro',
@@ -137,14 +145,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.black),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               imagePath != ''
                   ? Image.file(
                       File(imagePath),
                       height: 200,
                     )
-                  : SizedBox(),
-              SizedBox(height: 20),
+                  : const SizedBox(),
+              const SizedBox(height: 20),
               Slider(
                 value: _value,
                 min: 1,
@@ -158,17 +166,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ToggleButtons(
                   isSelected: isSelected,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       child: Text('Highlights',
                           style:
                               TextStyle(fontFamily: 'KodeMono', fontSize: 21)),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       child: Text('Shadows',
                           style:
@@ -186,10 +194,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                     });
                   }),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               CupertinoButton.filled(
                 onPressed: applyMaragram,
-                child: Text(
+                child: const Text(
                   'Apply Maragram',
                   style: TextStyle(
                       fontFamily: 'SourceCodePro',
@@ -198,10 +206,80 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.black),
                 ),
               ),
+              const SizedBox(height: 50),
+
+              GestureDetector(
+                onTap: () {
+                  // This moves from the personal info page to the credentials page,
+                  // replacing this page with that one.
+                  Navigator.of(context).pushReplacementNamed('/details');
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const Text('Details', style: TextStyle(
+                      fontFamily: 'SourceCodePro',
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 90,
+          backgroundColor: Colors.grey[600],
+          centerTitle: true,
+          title: const Text('Maragram Generator',
+              style: TextStyle(
+                  fontFamily: 'KodeMono', color: Colors.grey, fontSize: 32.0)),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 50),
+            const Center(
+              child: Text(
+                'Simple solarization app to apply the Dart Image Package solarization filter I designed.\n\nSolarization is the partial inversion if an image.\n\nHighlights and Shadows refer to where the solarization will take place. Threshold defines the pixels value up to where the effect will take place.\n\nBuilt by Guilherme Maranhao. Check out my other experimental projects at refotografia.wordpress.com',
+                style: TextStyle(
+                    fontFamily: 'SourceCodePro',
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            const SizedBox(height: 50),
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed('/');
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: const Text('Back', style: TextStyle(
+            fontFamily: 'SourceCodePro',
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white),),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      );
+
   }
 }
