@@ -162,7 +162,6 @@ class MainPageState extends State<MainPage> {
                 onChanged: (value) {
                   setState(() {
                     _value = value;
-                    print(_value);
                   });
                 },
               ),
@@ -252,7 +251,7 @@ class DetailsPage extends StatelessWidget {
             const SizedBox(height: 50),
             const Center(
               child: Text(
-                'Simple solarization app to apply the Dart Image Package solarization filter I designed.\n\nSolarization is the partial inversion if an image.\n\nHighlights and Shadows refer to where the solarization will take place. Threshold defines the pixels value up to where the effect will take place.\n\nBuilt by Guilherme Maranhao. Check out my other experimental projects at refotografia.wordpress.com',
+                'Simple solarization app to apply the Dart Image Package filter I helped write.\n\nSolarization is the partial inversion if an image.\n\nHighlights and Shadows refer to where the solarization will take place. Threshold defines the pixels value up to where the effect will take place.\n\nApp by Guilherme Maranhao. Check out my other experimental projects at refotografia.wordpress.com',
                 style: TextStyle(
                     fontFamily: 'SourceCodePro',
                     fontSize: 20.0,
